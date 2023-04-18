@@ -12,12 +12,10 @@ class CoordinatorHelper {
 
     var navigationStack: [UINavigationController]
     var rootNavigationControllerId: String
-    var initialNavigationTitle: String
-    var navigationBarInitiallyHidden: Bool
+    var initialNavigationBar: NavigationBar
     
-    init(navigationBarInitiallyHidden: Bool, initialNavigationTitle: String) {
-        self.navigationBarInitiallyHidden = navigationBarInitiallyHidden
-        self.initialNavigationTitle = initialNavigationTitle
+    init(initialNavigationBar: NavigationBar) {
+        self.initialNavigationBar = initialNavigationBar
         self.rootNavigationControllerId = String()
         self.navigationStack = []
     }
@@ -34,24 +32,26 @@ struct CoordinatorView<Screen: View>: UIViewControllerRepresentable {
     private let helper: CoordinatorHelper
     
     init(
-        navigationBarInitiallyHidden: Bool = false,
-        initialNavigationTitle: String,
+        initialNavigationBar: NavigationBar,
         initialScreen: @escaping (AppCoordinator) -> Screen
     ) {
         self.initialScreen = initialScreen
         self.coordinator = .init()
         self.helper = .init(
-            navigationBarInitiallyHidden: navigationBarInitiallyHidden,
-            initialNavigationTitle: initialNavigationTitle
+            initialNavigationBar: initialNavigationBar
         )
     }
 
     func makeUIViewController(context: Context) -> UINavigationController {
-        let screenViewController = UIHostingController(rootView: initialScreen(coordinator))
-        screenViewController.title = helper.initialNavigationTitle
+        let rootView = setupRootView(
+            navigationBar: helper.initialNavigationBar,
+            screen: initialScreen(coordinator).anyView
+        )
+        
+        let screenViewController = UIHostingController(rootView: rootView)
 
         let navigation = UINavigationController()
-        navigation.setNavigationBarHidden(helper.navigationBarInitiallyHidden, animated: false)
+        navigation.setNavigationBarHidden(true, animated: false)
         navigation.pushViewController(
             screenViewController,
             animated: false
@@ -78,9 +78,13 @@ private extension CoordinatorView {
         coordinator.onResult = { result in
             guard let navigation = helper.navigationStack.last else { return }
             switch result {
-            case .push(let pushedTitle, let viewBuilder):
-                let screen = UIHostingController(rootView: viewBuilder(coordinator))
-                screen.title = pushedTitle
+            case .push(let navigationBar, let viewBuilder):
+                let screen = UIHostingController(
+                    rootView: setupRootView(
+                        navigationBar: navigationBar,
+                        screen: viewBuilder(coordinator)
+                    )
+                )
                 navigation.pushViewController(screen, animated: true)
             case .navigateBack:
                 if navigation.viewControllers.count != 1 {
@@ -95,13 +99,17 @@ private extension CoordinatorView {
                     animated: true
                 )
             case .modal(let navigationTitle, let presentationType, let viewBuilder):
-                let screen = UIHostingController(rootView: viewBuilder(coordinator))
-                screen.title = navigationTitle
+                let rootView = NavigationStack {
+                    viewBuilder(coordinator)
+                        .navigationTitle(navigationTitle)
+                }
+                let screen = UIHostingController(rootView: rootView)
 
                 let viewController = CoordinatorUINavigationController(
                     rootViewController: screen,
                     disappearAction: { helper.navigationStack.removeLast() }
                 )
+                viewController.setNavigationBarHidden(true, animated: false)
                 
                 helper.navigationStack.append(viewController)
                 setupModal(
@@ -118,6 +126,33 @@ private extension CoordinatorView {
 }
 
 private extension CoordinatorView {
+    
+    func setupRootView(navigationBar: NavigationBar, screen: AnyView) -> some View {
+        NavigationStack {
+            screen
+                .navigationTitle(navigationBar.title)
+                .navigationBarTitleDisplayMode(navigationBar.displayMode)
+                .toolbar {
+                    ToolbarItem(placement: .navigationBarLeading) {
+                        HStack {
+                            ForEach(navigationBar.buttons.filter({ $0.placement == .leading })) { button in
+                                Button {
+                                    button.action()
+                                } label: {
+                                    switch button.label {
+                                    case .image(let image):
+                                        image
+                                    case .string(let string):
+                                        Text(string)
+                                    }
+                                }
+                                .tint(button.foregroundColor)
+                            }
+                        }
+                    }
+                }
+        }
+    }
     
     func setupModal(
         presentationType: AppCoordinator.ModalPresentationType,

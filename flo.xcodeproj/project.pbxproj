@@ -23,6 +23,7 @@
 		4B39340D29DCE2A4005C2F3A /* CoordinatorUINavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B39340C29DCE2A4005C2F3A /* CoordinatorUINavigationController.swift */; };
 		4B39340F29DEB4D0005C2F3A /* ModalPresentationType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B39340E29DEB4D0005C2F3A /* ModalPresentationType.swift */; };
 		4B39341729E6FA4B005C2F3A /* TestImageLibView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B39341629E6FA4B005C2F3A /* TestImageLibView.swift */; };
+		4B39341A29EF2C50005C2F3A /* NavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B39341929EF2C4F005C2F3A /* NavigationBar.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -43,6 +44,7 @@
 		4B39340C29DCE2A4005C2F3A /* CoordinatorUINavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoordinatorUINavigationController.swift; sourceTree = "<group>"; };
 		4B39340E29DEB4D0005C2F3A /* ModalPresentationType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalPresentationType.swift; sourceTree = "<group>"; };
 		4B39341629E6FA4B005C2F3A /* TestImageLibView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestImageLibView.swift; sourceTree = "<group>"; };
+		4B39341929EF2C4F005C2F3A /* NavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBar.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -128,6 +130,7 @@
 				4B3933F129DCD7FF005C2F3A /* UIViewController.swift */,
 				4B39340C29DCE2A4005C2F3A /* CoordinatorUINavigationController.swift */,
 				4B39340E29DEB4D0005C2F3A /* ModalPresentationType.swift */,
+				4B39341929EF2C4F005C2F3A /* NavigationBar.swift */,
 			);
 			path = "Extensions & Utils";
 			sourceTree = "<group>";
@@ -242,6 +245,7 @@
 				4B39340F29DEB4D0005C2F3A /* ModalPresentationType.swift in Sources */,
 				4B39340729DCDC14005C2F3A /* ContentView.swift in Sources */,
 				4B3933E929DCD75E005C2F3A /* Coordinator.swift in Sources */,
+				4B39341A29EF2C50005C2F3A /* NavigationBar.swift in Sources */,
 				4B3933EB29DCD766005C2F3A /* CoordinatorView.swift in Sources */,
 				4B39340B29DCDC14005C2F3A /* SecondView.swift in Sources */,
 				4B39340629DCDC14005C2F3A /* ContentViewModel.swift in Sources */,

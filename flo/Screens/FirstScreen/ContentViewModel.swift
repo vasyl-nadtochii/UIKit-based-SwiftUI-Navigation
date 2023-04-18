@@ -16,14 +16,26 @@ class ContentViewModel: ObservableObject {
     }
     
     func onButtonTapped() {
-        coordinator.push(title: "Second Screen") { coordinator in
+        coordinator.push(
+            navigationBar: NavigationBarImpl(
+                title: "Second screen",
+                displayMode: .inline,
+                coordinator: coordinator
+            )
+        ) { coordinator in
             SecondView(viewModel: .init(coordinator: coordinator))
         }
     }
     
     func onModalButtonTapped() {
-        coordinator.modal(navigationTitle: "Modal Hardcoded title", presentationType: .fullScreenCover) { coordinator in
-            EmptyView()
+        coordinator.modal(
+            navigationTitle: "Modal Hardcoded title",
+            presentationType: .fullScreenCover
+        ) { coordinator in
+            Text("Hello World")
+                .onTapGesture {
+                    coordinator.navigateBack()
+                }
         }
     }
 }

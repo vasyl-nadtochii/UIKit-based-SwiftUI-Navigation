@@ -16,7 +16,7 @@ class Coordinator {
     }
     
     enum Result {
-        case push(pushedTitle: String, screen: (Coordinator) -> AnyView)
+        case push(navigationBar: NavigationBar, screen: (Coordinator) -> AnyView)
         case navigateBack
         case alert(title: String, message: String, actions: [UIAlertAction])
         case modal(
@@ -30,11 +30,11 @@ class Coordinator {
     var onResult: ((Result) -> Void)?
 
     func push<T: View>(
-        title pushedTitle: String,
+        navigationBar: NavigationBar,
         screen: @escaping (Coordinator) -> T
     ) {
         self.onResult?(
-            .push(pushedTitle: pushedTitle) { coordinator in
+            .push(navigationBar: navigationBar) { coordinator in
                 screen(coordinator).anyView
             }
         )

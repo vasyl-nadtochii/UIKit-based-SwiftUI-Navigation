@@ -21,7 +21,13 @@ class SecondViewModel {
     }
     
     func onMoveForwardButtonTapped() {
-        coordinator.push(title: "Third Screen") { coordinator in
+        coordinator.push(
+            navigationBar: NavigationBarImpl(
+                title: "Third screen",
+                displayMode: .inline,
+                coordinator: coordinator
+            )
+        ) { coordinator in
             ThirdScreenView(viewModel: .init(coordinator: coordinator))
         }
     }
