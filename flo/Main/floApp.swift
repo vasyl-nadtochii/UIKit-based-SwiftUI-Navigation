@@ -11,7 +11,9 @@ import SwiftUI
 struct floApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            CoordinatorView(initialNavigationTitle: "Start title") { coordinator in
+                ContentView(viewModel: .init(coordinator: coordinator))
+            }
         }
     }
 }
