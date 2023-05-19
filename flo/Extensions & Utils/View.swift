@@ -7,6 +7,8 @@
 
 import SwiftUI
 
+// some comment
+
 extension View {
     
     var anyView: AnyView {
