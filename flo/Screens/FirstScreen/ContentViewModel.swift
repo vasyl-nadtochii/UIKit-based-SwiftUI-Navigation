@@ -19,7 +19,7 @@ class ContentViewModel: ObservableObject {
         coordinator.push(
             navigationBar: NavigationBarImpl(
                 title: "Second screen",
-                displayMode: .inline,
+                displayMode: .large,
                 coordinator: coordinator
             )
         ) { coordinator in
