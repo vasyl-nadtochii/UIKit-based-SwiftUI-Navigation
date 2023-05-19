@@ -24,6 +24,7 @@
 		4B39340F29DEB4D0005C2F3A /* ModalPresentationType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B39340E29DEB4D0005C2F3A /* ModalPresentationType.swift */; };
 		4B39341729E6FA4B005C2F3A /* TestImageLibView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B39341629E6FA4B005C2F3A /* TestImageLibView.swift */; };
 		4B39341A29EF2C50005C2F3A /* NavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B39341929EF2C4F005C2F3A /* NavigationBar.swift */; };
+		4B39341D29F6C19A005C2F3A /* ScalingHeaderScrollView in Frameworks */ = {isa = PBXBuildFile; productRef = 4B39341C29F6C19A005C2F3A /* ScalingHeaderScrollView */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,6 +53,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4B39341D29F6C19A005C2F3A /* ScalingHeaderScrollView in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -186,6 +188,9 @@
 			dependencies = (
 			);
 			name = flo;
+			packageProductDependencies = (
+				4B39341C29F6C19A005C2F3A /* ScalingHeaderScrollView */,
+			);
 			productName = flo;
 			productReference = 4B3933D429DCD72C005C2F3A /* flo.app */;
 			productType = "com.apple.product-type.application";
@@ -214,6 +219,9 @@
 				Base,
 			);
 			mainGroup = 4B3933CB29DCD72C005C2F3A;
+			packageReferences = (
+				4B39341B29F6C19A005C2F3A /* XCRemoteSwiftPackageReference "ScalingHeaderScrollView" */,
+			);
 			productRefGroup = 4B3933D529DCD72C005C2F3A /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -383,7 +391,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"flo/Preview Content\"";
-				DEVELOPMENT_TEAM = 5NNP4H75UT;
+				DEVELOPMENT_TEAM = F29X672UAU;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -413,7 +421,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"flo/Preview Content\"";
-				DEVELOPMENT_TEAM = 5NNP4H75UT;
+				DEVELOPMENT_TEAM = F29X672UAU;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -457,6 +465,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		4B39341B29F6C19A005C2F3A /* XCRemoteSwiftPackageReference "ScalingHeaderScrollView" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/exyte/ScalingHeaderScrollView.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.1.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		4B39341C29F6C19A005C2F3A /* ScalingHeaderScrollView */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4B39341B29F6C19A005C2F3A /* XCRemoteSwiftPackageReference "ScalingHeaderScrollView" */;
+			productName = ScalingHeaderScrollView;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 4B3933CC29DCD72C005C2F3A /* Project object */;
 }

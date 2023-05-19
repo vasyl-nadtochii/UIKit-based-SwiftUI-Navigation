@@ -11,15 +11,16 @@ import SwiftUI
 struct floApp: App {
     var body: some Scene {
         WindowGroup {
-            CoordinatorView(
-                initialNavigationBar: NavigationBarImpl(
-                    title: "Start",
-                    coordinator: nil,
-                    buttons: []
-                )
-            ) { coordinator in
-                ContentView(viewModel: .init(coordinator: coordinator))
-            }
+//            CoordinatorView(
+//                initialNavigationBar: NavigationBarImpl(
+//                    title: "Start",
+//                    coordinator: nil,
+//                    buttons: []
+//                )
+//            ) { coordinator in
+//                ContentView(viewModel: .init(coordinator: coordinator))
+//            }
+            SecondView(viewModel: .init(coordinator: Coordinator()))
         }
     }
 }
